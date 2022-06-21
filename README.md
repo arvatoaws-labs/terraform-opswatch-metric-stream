@@ -1,0 +1,1 @@
+# terraform-opswatch-metric-stream
