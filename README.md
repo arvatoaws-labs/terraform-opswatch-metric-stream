@@ -41,6 +41,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_excluded_namespaces"></a> [excluded\_namespaces](#input\_excluded\_namespaces) | n/a | `list(string)` | `[]` | no |
+| <a name="input_included_namespaces"></a> [included\_namespaces](#input\_included\_namespaces) | n/a | `list(string)` | `[]` | no |
 | <a name="input_url"></a> [url](#input\_url) | Opswatch URL | `string` | n/a | yes |
 
 ## Outputs

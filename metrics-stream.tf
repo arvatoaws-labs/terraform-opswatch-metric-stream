@@ -1,9 +1,32 @@
+variable "included_namespaces" {
+  type = list(string)
+  default = []
+}
+
+variable "excluded_namespaces" {
+  type = list(string)
+  default = []
+}
+
 resource "aws_cloudwatch_metric_stream" "opswatch" {
   depends_on = [aws_iam_role_policy.firehose_delivery]
   name = "OpswatchMetricStream"
   output_format = "json"
   firehose_arn = aws_kinesis_firehose_delivery_stream.opswatch.arn
   role_arn = aws_iam_role.cloudwatch.arn
+
+  dynamic "include_filter" {
+    for_each = var.included_namespaces
+    content {
+      namespace = include_filter.value
+    }
+  }
+  dynamic "exclude_filter" {
+    for_each = var.excluded_namespaces
+    content {
+      namespace = exclude_filter.value
+    }
+  }
 }
 
 resource "aws_iam_role" "cloudwatch" {
