@@ -1,7 +1,5 @@
-# terraform-module-vpc
-This module creates a workload VPC. It can be configured with either its own NAT or as a spoke VPC in the central TGW design. This requires both an existing deployment of the tgw-central module once, and a call to vpc-tgw-attachment for each of these VPCs.
-
-The VPCs CIDR is a variable. If you want to combine it with FNT ordered CIDRs, this module won't do that, but you can provide so by the variable. Per default, unique CIDRs aren't assumed.
+# terraform-module-opswatch-metric-stream
+This module creates a CloudWatch Metrics Stream with a HTTPS endpoint as target. This is primarily designed for OpsWatch.
 # TF Module Documentation
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
