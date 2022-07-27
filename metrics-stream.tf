@@ -109,6 +109,9 @@ resource "aws_kinesis_firehose_delivery_stream" "opswatch" {
     buffering_interval = 60
     retry_duration = 100
     s3_backup_mode = "FailedDataOnly"
+    request_configuration {
+      content_encoding = "GZIP"
+    }
   }
   s3_configuration {
     role_arn           = aws_iam_role.kinesis.arn
