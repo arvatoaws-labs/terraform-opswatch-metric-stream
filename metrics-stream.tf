@@ -102,7 +102,7 @@ resource "aws_kinesis_firehose_delivery_stream" "opswatch" {
   name = "OpswatchMetricStream"
   destination = "http_endpoint"
   http_endpoint_configuration {
-    url = var.url
+    url = "${var.url}/metrics"
     name = "CentralMetricProcessor"
     role_arn = aws_iam_role.kinesis.arn
     buffering_size = 1
