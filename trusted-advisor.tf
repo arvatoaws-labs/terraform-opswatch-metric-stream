@@ -12,6 +12,7 @@ resource "aws_cloudwatch_event_rule" "trusted_advisor" {
 }
 
 resource "aws_cloudwatch_event_target" "sns" {
+  event_bus_name = aws_cloudwatch_event_bus.opswatch.name
   rule = aws_cloudwatch_event_rule.trusted_advisor.name
   target_id = "trusted_advisor_sns"
   arn = aws_sns_topic.trusted_advisor.arn
