@@ -5,7 +5,10 @@ variable "included_namespaces" {
 
 variable "excluded_namespaces" {
   type = list(string)
-  default = []
+  default = [
+    "Usage",
+    "TrustedAdvisor"
+  ]
 }
 
 resource "aws_cloudwatch_metric_stream" "opswatch" {
