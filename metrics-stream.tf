@@ -124,10 +124,10 @@ resource "aws_kinesis_firehose_delivery_stream" "opswatch" {
 
 resource "aws_s3_bucket" "opswatch_error" {}
 
-resource "aws_s3_bucket_acl" "opswatch_error" {
-  bucket = aws_s3_bucket.opswatch_error.id
-  acl    = "private"
-}
+# resource "aws_s3_bucket_acl" "opswatch_error" {
+#   bucket = aws_s3_bucket.opswatch_error.id
+#   acl    = "private"
+# }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "opswatch_error" {
   bucket = aws_s3_bucket.opswatch_error.id
