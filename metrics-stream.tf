@@ -112,13 +112,13 @@ resource "aws_kinesis_firehose_delivery_stream" "opswatch" {
     request_configuration {
       content_encoding = "GZIP"
     }
-  }
-  s3_configuration {
-    role_arn           = aws_iam_role.kinesis.arn
-    bucket_arn         = aws_s3_bucket.opswatch_error.arn
-    buffer_size        = 128
-    buffer_interval    = 900
-    compression_format = "GZIP"
+    s3_configuration {
+      role_arn           = aws_iam_role.kinesis.arn
+      bucket_arn         = aws_s3_bucket.opswatch_error.arn
+      buffering_size     = 128
+      buffering_interval = 900
+      compression_format = "GZIP"
+    }
   }
 }
 
