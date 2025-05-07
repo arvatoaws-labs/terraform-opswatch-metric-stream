@@ -122,7 +122,11 @@ resource "aws_kinesis_firehose_delivery_stream" "opswatch" {
   }
 }
 
-resource "aws_s3_bucket" "opswatch_error" {}
+resource "aws_s3_bucket" "opswatch_error" {
+  tags = {
+    asy_backup_plan = "none"
+  }
+}
 
 # resource "aws_s3_bucket_acl" "opswatch_error" {
 #   bucket = aws_s3_bucket.opswatch_error.id
