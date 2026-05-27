@@ -25,12 +25,7 @@ resource "aws_cloudwatch_metric_stream" "opswatch" {
     }
   }
   tags = {
-    "Product ID"      = "prod-gis66v5zxadfk"
-    "Status"          = "Public"
-    "Delivery method" = "Professional Services"
-    "Product code"    = "8d3dhvaytz2l63mydmfgn9wkf"
-    "Last modified"   = "6. Nov. 2024"
-    "ARN"             = "arn:aws:aws-marketplace:us-east-1:773355297247:AWSMarketplace/ProfessionalServicesProduct/prod-gis66v5zxadfk"
+    "aws-apn-id" = "pc:8d3dhvaytz2l63mydmfgn9wkf"
   }
 }
 resource "aws_iam_role" "cloudwatch" {
@@ -45,12 +40,7 @@ resource "aws_iam_role" "cloudwatch" {
     }]
   })
   tags = {
-    "Product ID"      = "prod-gis66v5zxadfk"
-    "Status"          = "Public"
-    "Delivery method" = "Professional Services"
-    "Product code"    = "8d3dhvaytz2l63mydmfgn9wkf"
-    "Last modified"   = "6. Nov. 2024"
-    "ARN"             = "arn:aws:aws-marketplace:us-east-1:773355297247:AWSMarketplace/ProfessionalServicesProduct/prod-gis66v5zxadfk"
+    "aws-apn-id" = "pc:8d3dhvaytz2l63mydmfgn9wkf"
   }
 }
 resource "aws_iam_role_policy" "firehose_delivery" {
@@ -79,12 +69,7 @@ resource "aws_iam_role" "kinesis" {
     }]
   })
   tags = {
-    "Product ID"      = "prod-gis66v5zxadfk"
-    "Status"          = "Public"
-    "Delivery method" = "Professional Services"
-    "Product code"    = "8d3dhvaytz2l63mydmfgn9wkf"
-    "Last modified"   = "6. Nov. 2024"
-    "ARN"             = "arn:aws:aws-marketplace:us-east-1:773355297247:AWSMarketplace/ProfessionalServicesProduct/prod-gis66v5zxadfk"
+    "aws-apn-id" = "pc:8d3dhvaytz2l63mydmfgn9wkf"
   }
 }
 resource "aws_iam_role_policy" "http_delivery" {
@@ -136,23 +121,12 @@ resource "aws_kinesis_firehose_delivery_stream" "opswatch" {
     }
   }
   tags = {
-    "Product ID"      = "prod-gis66v5zxadfk"
-    "Status"          = "Public"
-    "Delivery method" = "Professional Services"
-    "Product code"    = "8d3dhvaytz2l63mydmfgn9wkf"
-    "Last modified"   = "6. Nov. 2024"
-    "ARN"             = "arn:aws:aws-marketplace:us-east-1:773355297247:AWSMarketplace/ProfessionalServicesProduct/prod-gis66v5zxadfk"
+    "aws-apn-id" = "pc:8d3dhvaytz2l63mydmfgn9wkf"
   }
 }
 resource "aws_s3_bucket" "opswatch_error" {
   tags = {
-    "Product ID"      = "prod-gis66v5zxadfk"
-    "Status"          = "Public"
-    "Delivery method" = "Professional Services"
-    "Product code"    = "8d3dhvaytz2l63mydmfgn9wkf"
-    "Last modified"   = "6. Nov. 2024"
-    "ARN"             = "arn:aws:aws-marketplace:us-east-1:773355297247:AWSMarketplace/ProfessionalServicesProduct/prod-gis66v5zxadfk"
-    "asy_backup_plan" = "none"
+    "aws-apn-id" = "pc:8d3dhvaytz2l63mydmfgn9wkf"
   }
 }
 # resource "aws_s3_bucket_acl" "opswatch_error" {
