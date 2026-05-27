@@ -2,19 +2,16 @@ variable "included_namespaces" {
   type    = list(string)
   default = []
 }
-
 variable "excluded_namespaces" {
   type    = list(string)
   default = []
 }
-
 resource "aws_cloudwatch_metric_stream" "opswatch" {
   depends_on    = [aws_iam_role_policy.firehose_delivery]
   name          = "OpswatchMetricStream"
   output_format = "json"
   firehose_arn  = aws_kinesis_firehose_delivery_stream.opswatch.arn
   role_arn      = aws_iam_role.cloudwatch.arn
-
   dynamic "include_filter" {
     for_each = var.included_namespaces
     content {
@@ -27,8 +24,15 @@ resource "aws_cloudwatch_metric_stream" "opswatch" {
       namespace = exclude_filter.value
     }
   }
+  tags = {
+    "Product ID"      = "prod-gis66v5zxadfk"
+    "Status"          = "Public"
+    "Delivery method" = "Professional Services"
+    "Product code"    = "8d3dhvaytz2l63mydmfgn9wkf"
+    "Last modified"   = "6. Nov. 2024"
+    "ARN"             = "arn:aws:aws-marketplace:us-east-1:773355297247:AWSMarketplace/ProfessionalServicesProduct/prod-gis66v5zxadfk"
+  }
 }
-
 resource "aws_iam_role" "cloudwatch" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -40,8 +44,15 @@ resource "aws_iam_role" "cloudwatch" {
       Action = "sts:AssumeRole"
     }]
   })
+  tags = {
+    "Product ID"      = "prod-gis66v5zxadfk"
+    "Status"          = "Public"
+    "Delivery method" = "Professional Services"
+    "Product code"    = "8d3dhvaytz2l63mydmfgn9wkf"
+    "Last modified"   = "6. Nov. 2024"
+    "ARN"             = "arn:aws:aws-marketplace:us-east-1:773355297247:AWSMarketplace/ProfessionalServicesProduct/prod-gis66v5zxadfk"
+  }
 }
-
 resource "aws_iam_role_policy" "firehose_delivery" {
   policy = jsonencode({
     Version = "2012-10-17"
@@ -56,7 +67,6 @@ resource "aws_iam_role_policy" "firehose_delivery" {
   })
   role = aws_iam_role.cloudwatch.id
 }
-
 resource "aws_iam_role" "kinesis" {
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -68,8 +78,15 @@ resource "aws_iam_role" "kinesis" {
       Action = "sts:AssumeRole"
     }]
   })
+  tags = {
+    "Product ID"      = "prod-gis66v5zxadfk"
+    "Status"          = "Public"
+    "Delivery method" = "Professional Services"
+    "Product code"    = "8d3dhvaytz2l63mydmfgn9wkf"
+    "Last modified"   = "6. Nov. 2024"
+    "ARN"             = "arn:aws:aws-marketplace:us-east-1:773355297247:AWSMarketplace/ProfessionalServicesProduct/prod-gis66v5zxadfk"
+  }
 }
-
 resource "aws_iam_role_policy" "http_delivery" {
   policy = jsonencode({
     Version = "2012-10-17"
@@ -91,12 +108,10 @@ resource "aws_iam_role_policy" "http_delivery" {
   })
   role = aws_iam_role.kinesis.id
 }
-
 variable "url" {
   type        = string
   description = "Opswatch URL"
 }
-
 resource "aws_kinesis_firehose_delivery_stream" "opswatch" {
   depends_on  = [aws_iam_role_policy.http_delivery]
   name        = "OpswatchMetricStream"
@@ -120,19 +135,30 @@ resource "aws_kinesis_firehose_delivery_stream" "opswatch" {
       compression_format = "GZIP"
     }
   }
-}
-
-resource "aws_s3_bucket" "opswatch_error" {
   tags = {
-    asy_backup_plan = "none"
+    "Product ID"      = "prod-gis66v5zxadfk"
+    "Status"          = "Public"
+    "Delivery method" = "Professional Services"
+    "Product code"    = "8d3dhvaytz2l63mydmfgn9wkf"
+    "Last modified"   = "6. Nov. 2024"
+    "ARN"             = "arn:aws:aws-marketplace:us-east-1:773355297247:AWSMarketplace/ProfessionalServicesProduct/prod-gis66v5zxadfk"
   }
 }
-
+resource "aws_s3_bucket" "opswatch_error" {
+  tags = {
+    "Product ID"      = "prod-gis66v5zxadfk"
+    "Status"          = "Public"
+    "Delivery method" = "Professional Services"
+    "Product code"    = "8d3dhvaytz2l63mydmfgn9wkf"
+    "Last modified"   = "6. Nov. 2024"
+    "ARN"             = "arn:aws:aws-marketplace:us-east-1:773355297247:AWSMarketplace/ProfessionalServicesProduct/prod-gis66v5zxadfk"
+    "asy_backup_plan" = "none"
+  }
+}
 # resource "aws_s3_bucket_acl" "opswatch_error" {
 #   bucket = aws_s3_bucket.opswatch_error.id
 #   acl    = "private"
 # }
-
 resource "aws_s3_bucket_server_side_encryption_configuration" "opswatch_error" {
   bucket = aws_s3_bucket.opswatch_error.id
   rule {
@@ -141,31 +167,25 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "opswatch_error" {
     }
   }
 }
-
 resource "aws_s3_bucket_versioning" "opswatch_error" {
   bucket = aws_s3_bucket.opswatch_error.id
   versioning_configuration {
     status = "Disabled"
   }
 }
-
 resource "aws_s3_bucket_lifecycle_configuration" "opswatch_error" {
   bucket = aws_s3_bucket.opswatch_error.id
-
   rule {
     id = "expire"
-
     expiration {
       days = 1
     }
     abort_incomplete_multipart_upload {
       days_after_initiation = 1
     }
-
     status = "Enabled"
   }
 }
-
 resource "aws_s3_bucket_public_access_block" "opswatch_error" {
   bucket                  = aws_s3_bucket.opswatch_error.id
   block_public_acls       = true
